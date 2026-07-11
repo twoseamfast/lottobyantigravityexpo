@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Lotto - 프리미엄 로또 번호 생성기</title>
+    <meta name="description" content="고급스러운 디자인의 로또 번호 생성기입니다. 번호 고정/제외 기능과 상세 통계 분석을 제공합니다.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <!-- Glow Background Effects -->
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>PREMIUM LOTTO</h1>
+            <p>스마트하고 아름다운 번호 매칭 시스템</p>
+        </header>
+
+        <!-- Main Drawing Machine Board -->
+        <main class="glass-panel">
+            <!-- Drawn Balls Display Area -->
+            <div class="ball-display-wrapper" id="displayWrapper">
+                <div class="ball-display" id="ballDisplay">
+                    <!-- Balls will be dynamically generated here -->
+                </div>
+            </div>
+
+            <!-- Controls (Action Buttons) -->
+            <div class="controls">
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="btnGenerate">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                        </svg>
+                        번호 생성하기
+                    </button>
+                    <button class="btn btn-secondary" id="btnClear">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                            <path d="M3 3v5h5"/>
+                        </svg>
+                        초기화
+                    </button>
+                </div>
+
+                <!-- Stats Overview -->
+                <div class="stats-container" id="statsContainer">
+                    <div class="stat-box">
+                        <div class="stat-label">번호 총합 (Sum)</div>
+                        <div class="stat-value" id="statSum">-</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">홀짝 비율 (Odd:Even)</div>
+                        <div class="stat-value" id="statOddEven">-</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">고저 비율 (High:Low)</div>
+                        <div class="stat-value" id="statHighLow">-</div>
+                    </div>
+                </div>
+
+                <!-- Advanced Options Toggle -->
+                <div class="options-panel">
+                    <div class="options-header" id="optionsToggle">
+                        <span class="options-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                            </svg>
+                            고정수 / 제외수 설정
+                        </span>
+                        <svg class="options-icon" id="optionsIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </div>
+
+                    <!-- Dropdown Options Content -->
+                    <div class="options-content" id="optionsContent">
+                        <div class="number-selector-section">
+                            <div class="selector-title">
+                                번호를 터치하여 토글하세요:
+                                <span style="color: var(--secondary); font-weight: 700; margin-left: 5px;">[고정수]</span> (하늘색, 최대 5개) /
+                                <span style="color: #ff8a80; font-weight: 700; margin-left: 5px;">[제외수]</span> (빨간색)
+                            </div>
+                            <div class="selector-grid" id="numberSelector">
+                                <!-- 1 to 45 grid cells dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Generation History Panel -->
+        <section class="history-panel">
+            <div class="history-header">
+                <h2 class="history-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    최근 생성 번호 기록
+                </h2>
+                <button class="btn-small" id="btnClearHistory">전체 기록 삭제</button>
+            </div>
+            <div class="history-list" id="historyList">
+                <!-- History items will be rendered here -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Premium Lotto. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Main Logic Script -->
+    <script src="script.js"></script>
+</body>
+</html>

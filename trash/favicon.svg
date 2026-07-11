@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient: Futuristic Purple/Indigo -->
+    <radialGradient id="ballGrad" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#bf5aff"/>
+      <stop offset="50%" stop-color="#8a2be2"/>
+      <stop offset="100%" stop-color="#4b0082"/>
+    </radialGradient>
+    
+    <!-- Neon Cyan Shadow/Glow -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Shiny Highlight Gradient -->
+    <linearGradient id="highlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Glow Ring -->
+  <circle cx="256" cy="256" r="230" fill="none" stroke="#00f2fe" stroke-width="8" filter="url(#glow)" opacity="0.8"/>
+
+  <!-- Main Ball Sphere -->
+  <circle cx="256" cy="256" r="220" fill="url(#ballGrad)" />
+
+  <!-- Inner Sphere Shadow to give 3D depth -->
+  <circle cx="256" cy="256" r="220" fill="none" stroke="#000000" stroke-width="12" opacity="0.3"/>
+
+  <!-- Shiny highlight ellipse -->
+  <ellipse cx="256" cy="110" rx="140" ry="60" fill="url(#highlight)" transform="rotate(-15, 256, 110)"/>
+
+  <!-- Center White Circle for Number Container -->
+  <circle cx="256" cy="270" r="100" fill="#ffffff" box-shadow="inset 0 10px 20px rgba(0,0,0,0.2)"/>
+
+  <!-- The Lucky Number "7" -->
+  <text x="256" y="308" 
+        font-family="'Outfit', 'Noto Sans KR', sans-serif" 
+        font-size="110" 
+        font-weight="900" 
+        fill="#8a2be2" 
+        text-anchor="middle"
+        letter-spacing="-2">7</text>
+</svg>
